@@ -50,12 +50,12 @@ export default {
     // instead of npm run dev), minify
     production && terser(),
     replace({
-      FOO: "bar",
-
+      DATO_CMS_TOKEN: process.env.DATO_CMS_TOKEN,
       // 2 level deep object should be stringify
       process: JSON.stringify({
         env: {
           isProd: production,
+          DATO_CMS_TOKEN: process.env.DATO_CMS_TOKEN,
           ...config().parsed, // attached the .env config
         },
       }),
