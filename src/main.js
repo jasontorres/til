@@ -4,7 +4,7 @@ const app = new App({
   target: document.body,
   props: {
     name: "TIL",
-    token: process.env.DATA_CMS_TOKEN,
+    token: process.env.DATO_CMS_TOKEN,
   },
 });
 
