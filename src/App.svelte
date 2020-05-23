@@ -29,7 +29,10 @@
 </script>
 
 <main>
-  <h1>{name}</h1>
+  <h1>{name}
+  
+  <span>by Jason Torres</span>
+  </h1>
 
   {#each posts as { title, body, _publishedAt }, i}
   <section>
@@ -38,9 +41,15 @@
     <p>Posted: {formatDate(new Date(_publishedAt))}</p>
   </section>
   {:else}
-  <section><center>Articles failed to load</center></section>
+  <section><center>Loading posts</center></section>
   {/each}
 </main>
+
+<footer>
+&copy; Jason Torres of <a href='https://www.mashupgarage.com'>Mashup Garage</a>. 
+<br/>
+This site is built on Svelte, NewCSS, and DatoCMS. Source code is available at <a href="https://github.com/jasontorres/til">Github.</a>
+</footer>
 
 <style>
   main {
@@ -69,12 +78,25 @@
     margin-bottom: 16px;
   }
 
+  h1 > span {
+    margin-top: 8px;
+    font-size: 16px;
+    display: block;
+  }
+
   h2 {
     font-weight: 100;
     max-width: 90%;
     line-height: 1.4em;
     margin: 0 auto;
     margin-bottom: 16px;
+  }
+
+  footer {
+    margin: 48px auto;
+    text-align: center;
+    color: #515151;
+    font-size: 14px;
   }
 
   @media (min-width: 640px) {
