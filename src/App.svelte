@@ -40,9 +40,11 @@
     <p>{@html marked(body)}</p>
     <p>Posted: {formatDate(new Date(_publishedAt))}</p>
   </section>
+  <hr />
   {:else}
   <section><center>Loading posts</center></section>
   {/each}
+
 </main>
 
 <footer>
@@ -51,12 +53,21 @@
 This site is built on Svelte, NewCSS, and DatoCMS. Source code is available at <a href="https://github.com/jasontorres/til">Github.</a>
 </footer>
 
+
+
 <style>
   main {
     text-align: center;
     padding: 1em;
     margin: 0 auto;
     font-size: 16px;
+  }
+
+  hr {
+    width: 180px;
+    margin: 32px auto;
+    height: 1px;
+    background: #1d1d1dd6;
   }
 
   section {
@@ -85,7 +96,7 @@ This site is built on Svelte, NewCSS, and DatoCMS. Source code is available at <
   }
 
   h2 {
-    font-weight: 100;
+    font-weight: 500;
     max-width: 90%;
     line-height: 1.4em;
     margin: 0 auto;
