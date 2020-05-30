@@ -38,7 +38,7 @@
 
 <main>
   <h1>
-    {siteName}
+    <a href="/">{siteName}</a>
     <span>by Jason Torres</span>
   </h1>
 
