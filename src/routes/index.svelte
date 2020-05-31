@@ -2,8 +2,9 @@
   import { onMount } from "svelte";
   import fetch from "node-fetch";
   import marked from "marked";
-
+  import prismjs from "prismjs";
   import { siteName, datoToken } from "../../config";
+
 
   let posts = [];
 
@@ -16,7 +17,7 @@
         Authorization: `Bearer ${datoToken}`
       },
       body: JSON.stringify({
-        query: "{ allPosts { title body slug _publishedAt } }"
+        query: "{ allPosts(orderBy: createdAt_DESC) { title body slug _publishedAt } }"
       })
     })
       .then(res => res.json())
@@ -30,6 +31,29 @@
       date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()
     );
   }
+
+  const renderer = new marked.Renderer();
+  renderer.code = function(code, lang, escaped) {
+    code = this.options.highlight(code, lang);
+    if (!lang) {
+      return `<pre><code>${code}</code></pre>`;
+    }
+
+    var langClass = "language-" + lang;
+    return `<pre class="${langClass}"><code class="${langClass}">${code}</code></pre>`;
+  };
+
+  marked.setOptions({
+    renderer,
+    highlight: function(code, lang) {
+      try {
+        return prismjs.highlight(code, prismjs.languages[lang], lang);
+      } catch {
+        return code;
+      }
+    }
+  });
+
 </script>
 
 <style>
